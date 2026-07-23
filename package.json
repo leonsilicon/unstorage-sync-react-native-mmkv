@@ -1,0 +1,76 @@
+{
+  "name": "unstorage-sync-react-native-mmkv",
+  "version": "0.1.0",
+  "description": "unstorage-sync driver for react-native-mmkv",
+  "keywords": [
+    "driver",
+    "key-value",
+    "mmkv",
+    "react-native",
+    "react-native-mmkv",
+    "storage",
+    "sync",
+    "synchronous",
+    "unstorage",
+    "unstorage-sync"
+  ],
+  "homepage": "https://github.com/leonsilicon/unstorage-sync-react-native-mmkv#readme",
+  "bugs": {
+    "url": "https://github.com/leonsilicon/unstorage-sync-react-native-mmkv/issues"
+  },
+  "license": "MIT",
+  "author": "Leon Si <leon@leonsilicon.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonsilicon/unstorage-sync-react-native-mmkv.git"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "vp pack",
+    "dev": "vp pack --watch",
+    "test": "vp test",
+    "check": "vp check",
+    "prepublishOnly": "vp run build",
+    "prepare": "vp config"
+  },
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "bumpp": "^11.1.0",
+    "react-native-mmkv": "^4.3.2",
+    "typescript": "^7.0.2",
+    "unstorage-sync": "^0.1.0",
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.5",
+    "vite-plus": "^0.2.4"
+  },
+  "peerDependencies": {
+    "react-native-mmkv": "^3.0.0 || ^4.0.0",
+    "unstorage-sync": "^0.1.0"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@0.2.5"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "bun",
+      "version": "1.3.14",
+      "onFail": "ignore"
+    }
+  }
+}
