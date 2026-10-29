@@ -1,8 +1,21 @@
-import { createMMKV, type Configuration, type MMKV } from "react-native-mmkv";
+import {
+  createMMKV as createMMKVFromReactNativeMmkv,
+  type Configuration,
+  type MMKV,
+} from "react-native-mmkv";
 import type { Driver, WatchCallback } from "unstorage-sync";
 import { filterKeyByBase, filterKeyByDepth, normalizeBaseKey } from "unstorage-sync";
 
 export type { Configuration, MMKV };
+
+export type MmkvDriverOptions = Partial<Configuration> & {
+  /**
+   * Override the MMKV factory. Useful for SSR-safe wrappers (e.g. Expo web
+   * server render) that return an in-memory instance when no DOM is present.
+   * Defaults to `createMMKV` from `react-native-mmkv`.
+   */
+  createMMKV?: (configuration: Configuration) => MMKV;
+};
 
 /**
  * Create an [unstorage-sync](https://github.com/leonsilicon/unstorage-sync) driver
@@ -18,11 +31,12 @@ export type { Configuration, MMKV };
  * });
  * ```
  */
-export function mmkvDriver(options?: Partial<Configuration>): Driver<Partial<Configuration>, MMKV> {
+export function mmkvDriver(options?: MmkvDriverOptions): Driver<MmkvDriverOptions, MMKV> {
+  const { createMMKV = createMMKVFromReactNativeMmkv, ...mmkvOptions } = options ?? {};
   const mmkv = createMMKV({
     compareBeforeSet: true,
-    ...options,
-    id: options?.id ?? "mmkv.default",
+    ...mmkvOptions,
+    id: mmkvOptions.id ?? "mmkv.default",
   });
   const listeners = new Set<WatchCallback>();
   const subscription = mmkv.addOnValueChangedListener((key) => {

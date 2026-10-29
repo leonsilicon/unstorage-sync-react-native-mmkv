@@ -1,6 +1,6 @@
 {
   "name": "unstorage-sync-react-native-mmkv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "unstorage-sync driver for react-native-mmkv",
   "keywords": [
     "driver",

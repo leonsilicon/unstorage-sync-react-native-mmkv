@@ -29,7 +29,11 @@ storage.getItem("foo:bar"); // → { hello: "world" }
 
 ### Options
 
-`mmkvDriver` accepts the same options as [`createMMKV`](https://github.com/mrousavy/react-native-mmkv#configuration) (`id`, `path`, `encryptionKey`, …). Defaults:
+`mmkvDriver` accepts the same options as [`createMMKV`](https://github.com/mrousavy/react-native-mmkv#configuration) (`id`, `path`, `encryptionKey`, …), plus:
+
+- `createMMKV` — optional factory override (defaults to `react-native-mmkv`'s `createMMKV`). Use this to inject an SSR-safe wrapper.
+
+Defaults:
 
 - `id`: `"mmkv.default"`
 - `compareBeforeSet`: `true`
